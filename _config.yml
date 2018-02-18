@@ -12,8 +12,8 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://scalavsleetcode.com
-root: /
+url: https://cckn1ght.github.io/scala-vs-leetcode/
+root: /scala-vs-leetcode/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -29,7 +29,7 @@ skip_render:
 
 # Writing
 new_post_name: :title.md # File name of new posts
-default_layout: post
+default_layout: leetcode
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
@@ -44,7 +44,7 @@ highlight:
   tab_replace:
 
 # Category & Tag
-default_category: uncategorized
+default_category: leetcode
 category_map:
 tag_map:
 
@@ -91,5 +91,10 @@ menu_icons:
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
+# You can use this:
 deploy:
-  type:
+  type: git
+  repo: https://github.com/cckn1ght/scala-vs-leetcode
+  branch: gh-pages
+  name: [cckn1ght]
+  email: [qunhaosong@gmail.com]
