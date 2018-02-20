@@ -1516,6 +1516,9 @@ pre .javascript .function {
 .post-meta-divider {
   margin: 0 0.5em;
 }
+.coding-page-host {
+  display: inline;
+}
 .post-meta-item-icon {
   margin-right: 3px;
 }
@@ -1822,7 +1825,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff4216;
+  background: #fff;
 }
 .links-of-blogroll {
   font-size: 13px;

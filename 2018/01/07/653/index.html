@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Tree," />
 
 
 
@@ -80,13 +80,14 @@
 
 
 <meta name="description" content="653. Two Sum IV - Input is a BST 题目大意是说我们有一颗二叉搜索树 （BST），判断树里是否有任意两个数的和等于给定的数 K，如果有的话返回 true。样例 1：12345678910Input:     5   / \  3   6 / \   \2   4   7Target = 9Output: True 样例 2：12345678910Input:">
+<meta name="keywords" content="Tree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Scala 大战 Leetcode - Leetcode 653">
 <meta property="og:url" content="https://www.scalavsleetcode.com/2018/01/07/653/index.html">
 <meta property="og:site_name" content="Scala 大战 Leetcode">
 <meta property="og:description" content="653. Two Sum IV - Input is a BST 题目大意是说我们有一颗二叉搜索树 （BST），判断树里是否有任意两个数的和等于给定的数 K，如果有的话返回 true。样例 1：12345678910Input:     5   / \  3   6 / \   \2   4   7Target = 9Output: True 样例 2：12345678910Input:">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-19T05:52:05.919Z">
+<meta property="og:updated_time" content="2018-02-20T08:11:36.851Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Scala 大战 Leetcode - Leetcode 653">
 <meta name="twitter:description" content="653. Two Sum IV - Input is a BST 题目大意是说我们有一颗二叉搜索树 （BST），判断树里是否有任意两个数的和等于给定的数 K，如果有的话返回 true。样例 1：12345678910Input:     5   / \  3   6 / \   \2   4   7Target = 9Output: True 样例 2：12345678910Input:">
@@ -130,6 +131,15 @@
 
 
 
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-103006260-2', 'auto');
+  ga('send', 'pageview');
+</script>
 
 
 
@@ -190,12 +200,22 @@
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            归档
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -272,8 +292,41 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/07/653/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/07/653/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -321,6 +374,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Tree/" rel="tag"># Tree</a>
+          
+        </div>
       
 
       
@@ -373,6 +432,16 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
 
 
 
@@ -409,7 +478,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives">
               
                   <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
@@ -418,7 +487,25 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
             
 
           </nav>
@@ -470,8 +557,11 @@
 
 
 
+
   <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
 
+<span class="post-meta-divider">|</span>
+<p class="coding-page-host">Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
 
 
 
@@ -588,6 +678,26 @@
 
   
 
+    
+      <script id="dsq-count-scr" src="https://scala-vs-leetcode.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://www.scalavsleetcode.com/2018/01/07/653/';
+          this.page.identifier = '2018/01/07/653/';
+          this.page.title = 'Scala 大战 Leetcode - Leetcode 653';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://scala-vs-leetcode.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
 
 
 
@@ -600,10 +710,6 @@
   
 
 
-
-
-
-  
 
 
 
