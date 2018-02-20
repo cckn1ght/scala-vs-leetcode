@@ -12,8 +12,8 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://cckn1ght.github.io/scala-vs-leetcode/
-root: /scala-vs-leetcode/
+url: https://www.scalavsleetcode.com/
+root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -65,36 +65,36 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: next
 
-# next
-menu:
-  home: /
-  # archives: /archives
-  # about: /about
-  # categories: /categories
-  # tags: /tags
-  # commonweal: /404.html
 
 # Code Highlight theme
 # Available value: normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
 highlight_theme: night
 
-menu_icons:
-  enable: true
-  # Icon Mapping.
-  home: home
-  about: user
-  categories: th
-  tags: tags
-  archives: archive
-  commonweal: heartbeat
+# # algolia search
+# algolia:
+#   applicationID: '551YU5302H'
+#   indexName: 'scala_vs_leetcode'
+#   chunkSize: 5000
+
+# local search
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 # You can use this:
 deploy:
-  type: git
+- type: git
   repo: https://github.com/cckn1ght/scala-vs-leetcode
   branch: gh-pages
+  name: [cckn1ght]
+  email: [qunhaosong@gmail.com]
+- type: git
+  repo: https://coding.net/u/cckn1ght/p/cckn1ght.coding.me/git
+  branch: master
   name: [cckn1ght]
   email: [qunhaosong@gmail.com]
