@@ -79,14 +79,14 @@
 
 <meta name="description" content="696. Count Binary Substrings 给定一个字符串 s，数出拥有同样多个数连续的 0 或 1 的非空子字符串数目。符合要求的子字符串还有一个特征，就是它的 0 或 1 必须是连在一起的。也就是说 0011 或 1100 是符合要求的字符串，但是 0101 就不是。相同的子字符串如果出现多次，那我们要把出现的所有次数都算上。 示例 1：1234567Input: &amp;quot;0">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Scala 大战 Leetcode – 696">
-<meta property="og:url" content="https://www.scalavsleetcode.com/2018/02/22/696/index.html">
-<meta property="og:site_name" content="Scala 大战 Leetcode">
+<meta property="og:title" content="Python 大战 Leetcode – 696">
+<meta property="og:url" content="https://www.pythonvsleetcode.com/2018/02/22/696/index.html">
+<meta property="og:site_name" content="Python 大战 Leetcode">
 <meta property="og:description" content="696. Count Binary Substrings 给定一个字符串 s，数出拥有同样多个数连续的 0 或 1 的非空子字符串数目。符合要求的子字符串还有一个特征，就是它的 0 或 1 必须是连在一起的。也就是说 0011 或 1100 是符合要求的字符串，但是 0101 就不是。相同的子字符串如果出现多次，那我们要把出现的所有次数都算上。 示例 1：1234567Input: &amp;quot;0">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-22T13:10:57.552Z">
+<meta property="og:updated_time" content="2018-02-23T14:38:17.417Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Scala 大战 Leetcode – 696">
+<meta name="twitter:title" content="Python 大战 Leetcode – 696">
 <meta name="twitter:description" content="696. Count Binary Substrings 给定一个字符串 s，数出拥有同样多个数连续的 0 或 1 的非空子字符串数目。符合要求的子字符串还有一个特征，就是它的 0 或 1 必须是连在一起的。也就是说 0011 或 1100 是符合要求的字符串，但是 0101 就不是。相同的子字符串如果出现多次，那我们要把出现的所有次数都算上。 示例 1：1234567Input: &amp;quot;0">
 
 
@@ -117,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="https://www.scalavsleetcode.com/2018/02/22/696/"/>
+  <link rel="canonical" href="https://www.pythonvsleetcode.com/2018/02/22/696/"/>
 
 
 
 
 
-  <title>Scala 大战 Leetcode – 696 | Scala 大战 Leetcode</title>
+  <title>Python 大战 Leetcode – 696 | Python 大战 Leetcode</title>
   
 
 
@@ -162,7 +162,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Scala 大战 Leetcode</span>
+        <span class="site-title">Python 大战 Leetcode</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -249,7 +249,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.scalavsleetcode.com/2018/02/22/696/">
+    <link itemprop="mainEntityOfPage" href="https://www.pythonvsleetcode.com/2018/02/22/696/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Joe">
@@ -258,7 +258,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Scala 大战 Leetcode">
+      <meta itemprop="name" content="Python 大战 Leetcode">
     </span>
 
     
@@ -266,7 +266,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Scala 大战 Leetcode – 696</h1>
+          <h1 class="post-title" itemprop="name headline">Python 大战 Leetcode – 696</h1>
         
 
         <div class="post-meta">
@@ -340,7 +340,7 @@
 <a id="more"></a>
 <p>第一个想法是这题应该可以把时间复杂度控制在 O(n)，n 就是 s.length。一开始看起来比较困难的似乎是类似于 “000111” 这种比较长的符合条件的字符串包含了不止一个符合条件的子字符串。<br>仔细想一下其实刚才那个包含 3 个相同 “0” 和 “1” 的字符串就包含了 3 个符合要求的字符串，分别是 “000111”，”0011” 以及 “01”。<br>这样一来就很好处理了，我们只需要遍历字符串，在过程中找出那些最长的符合要求的子字符串，再根据这个子字符串里面有多少个 0（或 1）来确定小的符合条件的子字符串。<br>那么如何找符合要求的最长的子字符串呢，似乎用代码来解释比较好。<br>以 <code>00110011</code> 来举例，我们一开始取第一个字符 ‘0’ 为当前字符，记成 curChar，遍历的时候看每个字符是否和当前字符相同，如果相同，我们记录当前碰到相同字符的次数，curLen。<br>如果不同，比如说碰到第一个 ‘1’ 的时候，就把 curChar 设成 ‘1’，因为我们当前的字符已经不是 ‘0’ 了，所以把 curLen 的值记录到 prevLen 里面，然后 curLen 是现在碰到 ‘1’ 的次数，也就1。<br>再次碰到和 ‘1’ 不一样的字符的时候，证明我们已经找到了一个符合要求的最长子字符串。要记录次数。</p>
 <p>解释有点复杂，看代码会清楚一点。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countBinarySubstrings</span></span>(s: <span class="type">String</span>): <span class="type">Int</span> = &#123;</span><br><span class="line">      <span class="keyword">var</span> prevLen = <span class="number">0</span></span><br><span class="line">      <span class="keyword">var</span> curLen = <span class="number">0</span></span><br><span class="line">      <span class="keyword">var</span> curChar = s(<span class="number">0</span>)</span><br><span class="line">      <span class="keyword">var</span> totalCounts = <span class="number">0</span></span><br><span class="line">      <span class="keyword">for</span> (c &lt;- s) &#123;</span><br><span class="line">        <span class="keyword">if</span> (c == curChar) &#123; <span class="comment">// 字符没有转换</span></span><br><span class="line">          curLen += <span class="number">1</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">// 字符转换了</span></span><br><span class="line">          <span class="comment">// 如果已经转换过一次，那么 prevLen 就不再是 0 了。</span></span><br><span class="line">          <span class="keyword">if</span>(prevLen &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// 这时候我们要记录这个最大子字符串包含的所有满足要求子字符串</span></span><br><span class="line">            totalCounts += math.min(prevLen, curLen)</span><br><span class="line">          &#125;</span><br><span class="line">          prevLen = curLen</span><br><span class="line">          curLen = <span class="number">1</span></span><br><span class="line">          curChar = c</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 这里要加上后面是因为我们的 for 循环没法记录最后的那个子字符串</span></span><br><span class="line">      totalCounts + math.min(prevLen, curLen)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">object Solution &#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countBinarySubstrings</span><span class="params">(s: String)</span>:</span> Int = &#123;</span><br><span class="line">      var prevLen = <span class="number">0</span></span><br><span class="line">      var curLen = <span class="number">0</span></span><br><span class="line">      var curChar = s(<span class="number">0</span>)</span><br><span class="line">      var totalCounts = <span class="number">0</span></span><br><span class="line">      <span class="keyword">for</span> (c &lt;- s) &#123;</span><br><span class="line">        <span class="keyword">if</span> (c == curChar) &#123; // 字符没有转换</span><br><span class="line">          curLen += <span class="number">1</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; // 字符转换了</span><br><span class="line">          // 如果已经转换过一次，那么 prevLen 就不再是 <span class="number">0</span> 了。</span><br><span class="line">          <span class="keyword">if</span>(prevLen &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            // 这时候我们要记录这个最大子字符串包含的所有满足要求子字符串</span><br><span class="line">            totalCounts += math.min(prevLen, curLen)</span><br><span class="line">          &#125;</span><br><span class="line">          prevLen = curLen</span><br><span class="line">          curLen = <span class="number">1</span></span><br><span class="line">          curChar = c</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      // 这里要再加一次是因为我们的 <span class="keyword">for</span> 循环没法记录最后的那个子字符串</span><br><span class="line">      totalCounts + math.min(prevLen, curLen)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -365,8 +365,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/18/775/" rel="next" title="Scala 大战 Leetcode – Leetcode 775">
-                <i class="fa fa-chevron-left"></i> Scala 大战 Leetcode – Leetcode 775
+              <a href="/2018/02/18/775/" rel="next" title="Python 大战 Leetcode – Leetcode 775">
+                <i class="fa fa-chevron-left"></i> Python 大战 Leetcode – Leetcode 775
               </a>
             
           </div>
@@ -374,6 +374,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/23/747/" rel="prev" title="Python 大战 Leetcode – 747">
+                Python 大战 Leetcode – 747 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -451,7 +455,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -650,18 +654,18 @@
   
 
     
-      <script id="dsq-count-scr" src="https://scala-vs-leetcode.disqus.com/count.js" async></script>
+      <script id="dsq-count-scr" src="https://python-vs-leetcode.disqus.com/count.js" async></script>
     
 
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://www.scalavsleetcode.com/2018/02/22/696/';
+          this.page.url = 'https://www.pythonvsleetcode.com/2018/02/22/696/';
           this.page.identifier = '2018/02/22/696/';
-          this.page.title = 'Scala 大战 Leetcode – 696';
+          this.page.title = 'Python 大战 Leetcode – 696';
         };
         var d = document, s = d.createElement('script');
-        s.src = 'https://scala-vs-leetcode.disqus.com/embed.js';
+        s.src = 'https://python-vs-leetcode.disqus.com/embed.js';
         s.setAttribute('data-timestamp', '' + +new Date());
         (d.head || d.body).appendChild(s);
       </script>

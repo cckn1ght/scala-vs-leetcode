@@ -80,14 +80,14 @@
 <meta name="description" content="687. Longest Univalue Path 题目大意是给出一个二叉树，我们要找出最长的一条路径，该路径中所有节点的值都相同，并返回该路径的长度（所谓的“最长相同值路径”的长度）。两个节点之间的长度指的是节点之间边的数量这个题目的关键是理解这个“最长相同值路径”。题目中没有给出这个名词详细的解释，只给了两个例子，我们先看例子。 示例1：Input:12345    5   / \  4">
 <meta name="keywords" content="Tree,Recursion">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Scala 大战 Leetcode – Leetcode 687">
-<meta property="og:url" content="https://www.scalavsleetcode.com/2018/02/10/687/index.html">
-<meta property="og:site_name" content="Scala 大战 Leetcode">
+<meta property="og:title" content="Python 大战 Leetcode – Leetcode 687">
+<meta property="og:url" content="https://www.pythonvsleetcode.com/2018/02/10/687/index.html">
+<meta property="og:site_name" content="Python 大战 Leetcode">
 <meta property="og:description" content="687. Longest Univalue Path 题目大意是给出一个二叉树，我们要找出最长的一条路径，该路径中所有节点的值都相同，并返回该路径的长度（所谓的“最长相同值路径”的长度）。两个节点之间的长度指的是节点之间边的数量这个题目的关键是理解这个“最长相同值路径”。题目中没有给出这个名词详细的解释，只给了两个例子，我们先看例子。 示例1：Input:12345    5   / \  4">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-22T12:49:27.755Z">
+<meta property="og:updated_time" content="2018-02-23T14:38:13.878Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Scala 大战 Leetcode – Leetcode 687">
+<meta name="twitter:title" content="Python 大战 Leetcode – Leetcode 687">
 <meta name="twitter:description" content="687. Longest Univalue Path 题目大意是给出一个二叉树，我们要找出最长的一条路径，该路径中所有节点的值都相同，并返回该路径的长度（所谓的“最长相同值路径”的长度）。两个节点之间的长度指的是节点之间边的数量这个题目的关键是理解这个“最长相同值路径”。题目中没有给出这个名词详细的解释，只给了两个例子，我们先看例子。 示例1：Input:12345    5   / \  4">
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="https://www.scalavsleetcode.com/2018/02/10/687/"/>
+  <link rel="canonical" href="https://www.pythonvsleetcode.com/2018/02/10/687/"/>
 
 
 
 
 
-  <title>Scala 大战 Leetcode – Leetcode 687 | Scala 大战 Leetcode</title>
+  <title>Python 大战 Leetcode – Leetcode 687 | Python 大战 Leetcode</title>
   
 
 
@@ -163,7 +163,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Scala 大战 Leetcode</span>
+        <span class="site-title">Python 大战 Leetcode</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -250,7 +250,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.scalavsleetcode.com/2018/02/10/687/">
+    <link itemprop="mainEntityOfPage" href="https://www.pythonvsleetcode.com/2018/02/10/687/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Joe">
@@ -259,7 +259,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Scala 大战 Leetcode">
+      <meta itemprop="name" content="Python 大战 Leetcode">
     </span>
 
     
@@ -267,7 +267,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Scala 大战 Leetcode – Leetcode 687</h1>
+          <h1 class="post-title" itemprop="name headline">Python 大战 Leetcode – Leetcode 687</h1>
         
 
         <div class="post-meta">
@@ -364,11 +364,11 @@
 <li>但是这个路径允许有至多一个分叉点，例二里面的父节点 4 就是一个例子。当然也可以没有分叉点，比如例 1。</li>
 </ol>
 <p>这个概念导致路径中的分叉点成了一个特殊的点，因此我们可以从这里做文章。</p>
-<p>在不考虑细节和具体实现的的情况下，我的一个单纯的想法是遍历节点，每次遍历的时候找到以这个节点为分叉节点的相同值路径长度。<br>基于这个想法，我们可以用一个全局变量记录这个最大值，然后每次遍历的时候比较改变这个最大值。<br>但是这个方法并不函数式，因此我们使用递归的方式来实现:<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">longestUnivaluePath</span></span>(root: <span class="type">TreeNode</span>): <span class="type">Int</span> = &#123;</span><br><span class="line">  <span class="keyword">if</span> (root == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="number">0</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 假设 findLength 会找到以某个节点为分叉节点的最长相同值路径</span></span><br><span class="line">    <span class="keyword">val</span> nodeLen = findLength(root) <span class="comment">// 以当前节点为分叉节点的最长相同值路径</span></span><br><span class="line">    <span class="keyword">val</span> leftLen = longestUnivaluePath(root.left) <span class="comment">// 左子树的最长路径</span></span><br><span class="line">    <span class="keyword">val</span> rightLen = longestUnivaluePath(root.right) <span class="comment">// 右子树的最长路径</span></span><br><span class="line">    <span class="comment">// 返回上面三个值中最大的那个</span></span><br><span class="line">    (nodeLen :: leftLen :: rightLen :: <span class="type">Nil</span>) reduce (_ max _) <span class="comment">// 构造一个 list 并返回最大值</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在不考虑细节和具体实现的的情况下，我的一个单纯的想法是遍历节点，每次遍历的时候找到以这个节点为分叉节点的相同值路径长度。<br>基于这个想法，我们可以用一个全局变量记录这个最大值，然后每次遍历的时候比较改变这个最大值。<br>但是这个方法并不函数式，因此我们使用递归的方式来实现:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">longestUnivaluePath</span><span class="params">(root: TreeNode)</span>:</span> Int = &#123;</span><br><span class="line">  <span class="keyword">if</span> (root == null) &#123;</span><br><span class="line">    <span class="number">0</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    // 假设 findLength 会找到以某个节点为分叉节点的最长相同值路径</span><br><span class="line">    val nodeLen = findLength(root) // 以当前节点为分叉节点的最长相同值路径</span><br><span class="line">    val leftLen = longestUnivaluePath(root.left) // 左子树的最长路径</span><br><span class="line">    val rightLen = longestUnivaluePath(root.right) // 右子树的最长路径</span><br><span class="line">    // 返回上面三个值中最大的那个</span><br><span class="line">    (nodeLen :: leftLen :: rightLen :: Nil) reduce (_ max _) // 构造一个 list 并返回最大值</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>所以我们现在只要把 findLength 这个方法实现就可以了。这里是我纠结最久的地方，重写了几次，原因就是之前说的没有把最长相同值路径的定义想清楚就开始写了。<br>我们再回顾一下上面讲到的两个特性，根据那两个特性，我们可以总结出 findLength 方法该怎么写：</p>
 <ol>
 <li>对于可能存在的分叉点而言，我们要做的就是找到它左子树和右子树的最大相同值路径长度，返回相加的值。</li>
-<li>对于不是分叉点的节点，我们不能把它的左子树和右子树的最大相同路径长度相加，而是要对比两个值，返回大的那个。<br>所以完整的代码如下：<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">longestUnivaluePath</span></span>(root: <span class="type">TreeNode</span>): <span class="type">Int</span> = &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="number">0</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 假设 findLength 会找到以某个节点为分叉节点的最长相同值路径长度</span></span><br><span class="line">      <span class="keyword">val</span> nodeLen = findLength(root) <span class="comment">// 以当前节点为分叉节点的最长相同值路径长度</span></span><br><span class="line">      <span class="keyword">val</span> leftLen = longestUnivaluePath(root.left) <span class="comment">// 左子树的最长路径</span></span><br><span class="line">      <span class="keyword">val</span> rightLen = longestUnivaluePath(root.right) <span class="comment">// 右子树的最长路径</span></span><br><span class="line">      <span class="comment">// 返回上面三个值中最大的那个</span></span><br><span class="line">      (nodeLen :: leftLen :: rightLen :: <span class="type">Nil</span>) reduce (_ max _) <span class="comment">// 构造一个 list 并返回最大值</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">findLength</span></span>(node: <span class="type">TreeNode</span>): <span class="type">Int</span> = &#123;</span><br><span class="line">    <span class="comment">// 对分叉节点来说，找到左右子树的最长相同值路径长度，并返回和</span></span><br><span class="line">    findChildLength(node.left, node.value) + findChildLength(node.right, node.value)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">findChildLength</span></span>(child: <span class="type">TreeNode</span>, rootValue: <span class="type">Int</span>): <span class="type">Int</span> = &#123;</span><br><span class="line">    <span class="comment">// 对于非分叉节点来说，如果值不等于分叉节点的值，则返回0</span></span><br><span class="line">    <span class="keyword">if</span> (child == <span class="literal">null</span> || child.value != rootValue) &#123;</span><br><span class="line">      <span class="number">0</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">val</span> left = findChildLength(child.left, rootValue)</span><br><span class="line">      <span class="keyword">val</span> right = findChildLength(child.right, rootValue)</span><br><span class="line">      <span class="comment">// 首先这个节点跟分叉节点值相同，因此返回的最小值是 1</span></span><br><span class="line">      <span class="comment">// 然后再加上左右子树中比较大的那个相同值路径长度</span></span><br><span class="line">      <span class="number">1</span> + (left max right)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>对于不是分叉点的节点，我们不能把它的左子树和右子树的最大相同路径长度相加，而是要对比两个值，返回大的那个。<br>所以完整的代码如下：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">object Solution &#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">longestUnivaluePath</span><span class="params">(root: TreeNode)</span>:</span> Int = &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == null) &#123;</span><br><span class="line">      <span class="number">0</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      // 假设 findLength 会找到以某个节点为分叉节点的最长相同值路径长度</span><br><span class="line">      val nodeLen = findLength(root) // 以当前节点为分叉节点的最长相同值路径长度</span><br><span class="line">      val leftLen = longestUnivaluePath(root.left) // 左子树的最长路径</span><br><span class="line">      val rightLen = longestUnivaluePath(root.right) // 右子树的最长路径</span><br><span class="line">      // 返回上面三个值中最大的那个</span><br><span class="line">      (nodeLen :: leftLen :: rightLen :: Nil) reduce (_ max _) // 构造一个 list 并返回最大值</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">findLength</span><span class="params">(node: TreeNode)</span>:</span> Int = &#123;</span><br><span class="line">    // 对分叉节点来说，找到左右子树的最长相同值路径长度，并返回和</span><br><span class="line">    findChildLength(node.left, node.value) + findChildLength(node.right, node.value)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">findChildLength</span><span class="params">(child: TreeNode, rootValue: Int)</span>:</span> Int = &#123;</span><br><span class="line">    // 对于非分叉节点来说，如果值不等于分叉节点的值，则返回<span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> (child == null || child.value != rootValue) &#123;</span><br><span class="line">      <span class="number">0</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      val left = findChildLength(child.left, rootValue)</span><br><span class="line">      val right = findChildLength(child.right, rootValue)</span><br><span class="line">      // 首先这个节点跟分叉节点值相同，因此返回的最小值是 <span class="number">1</span></span><br><span class="line">      // 然后再加上左右子树中比较大的那个相同值路径长度</span><br><span class="line">      <span class="number">1</span> + (left max right)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>时间复杂度方面，对于 longestUnivaluePath 这个方法来说，这是一个先序遍历，所以它的时间复杂度是 O(n)，但是对于每一个节点，我们又做了 findLength 这个操作，这个操作理论上最坏情况也会对从当前节点开始的所有子节点做遍历。但是总的复杂度绝对不是 O($n^2$)，因为对于每个子节点来说，它所需要遍历的节点数目是成倍下降的，因此最大的时间复杂度应该是 O($n\log n$)，精确的值应该比这个更小一点，但是不知道该怎么求，欢迎留言讨论。</p>
@@ -404,8 +404,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/07/653/" rel="next" title="Scala 大战 Leetcode - Leetcode 653">
-                <i class="fa fa-chevron-left"></i> Scala 大战 Leetcode - Leetcode 653
+              <a href="/2018/01/07/653/" rel="next" title="Python 大战 Leetcode - Leetcode 653">
+                <i class="fa fa-chevron-left"></i> Python 大战 Leetcode - Leetcode 653
               </a>
             
           </div>
@@ -414,8 +414,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/18/775/" rel="prev" title="Scala 大战 Leetcode – Leetcode 775">
-                Scala 大战 Leetcode – Leetcode 775 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/18/775/" rel="prev" title="Python 大战 Leetcode – Leetcode 775">
+                Python 大战 Leetcode – Leetcode 775 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -494,7 +494,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -693,18 +693,18 @@
   
 
     
-      <script id="dsq-count-scr" src="https://scala-vs-leetcode.disqus.com/count.js" async></script>
+      <script id="dsq-count-scr" src="https://python-vs-leetcode.disqus.com/count.js" async></script>
     
 
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://www.scalavsleetcode.com/2018/02/10/687/';
+          this.page.url = 'https://www.pythonvsleetcode.com/2018/02/10/687/';
           this.page.identifier = '2018/02/10/687/';
-          this.page.title = 'Scala 大战 Leetcode – Leetcode 687';
+          this.page.title = 'Python 大战 Leetcode – Leetcode 687';
         };
         var d = document, s = d.createElement('script');
-        s.src = 'https://scala-vs-leetcode.disqus.com/embed.js';
+        s.src = 'https://python-vs-leetcode.disqus.com/embed.js';
         s.setAttribute('data-timestamp', '' + +new Date());
         (d.head || d.body).appendChild(s);
       </script>

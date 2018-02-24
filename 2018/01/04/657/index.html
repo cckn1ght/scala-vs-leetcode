@@ -80,14 +80,14 @@
 <meta name="description" content="Leetcode 657. Judge Route Circle 题目大意是有个机器人从（0，0）位置出发，每次会上下左右选一个方向移动 1 步，我们要判断它最终是否回到原点。它的移动轨迹用一个字符串来描述，每个字符表示往一个方向移动了一步，可能的字符以及方向是：L (左)， R (右)， U (上)， D (下)。 示例1：12Input: &amp;quot;UD&amp;quot;Output: true">
 <meta name="keywords" content="String">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Scala 大战 Leetcode – Leetcode 657">
-<meta property="og:url" content="https://www.scalavsleetcode.com/2018/01/04/657/index.html">
-<meta property="og:site_name" content="Scala 大战 Leetcode">
+<meta property="og:title" content="Python 大战 Leetcode – Leetcode 657">
+<meta property="og:url" content="https://www.pythonvsleetcode.com/2018/01/04/657/index.html">
+<meta property="og:site_name" content="Python 大战 Leetcode">
 <meta property="og:description" content="Leetcode 657. Judge Route Circle 题目大意是有个机器人从（0，0）位置出发，每次会上下左右选一个方向移动 1 步，我们要判断它最终是否回到原点。它的移动轨迹用一个字符串来描述，每个字符表示往一个方向移动了一步，可能的字符以及方向是：L (左)， R (右)， U (上)， D (下)。 示例1：12Input: &amp;quot;UD&amp;quot;Output: true">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-20T08:11:15.389Z">
+<meta property="og:updated_time" content="2018-02-23T14:38:10.117Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Scala 大战 Leetcode – Leetcode 657">
+<meta name="twitter:title" content="Python 大战 Leetcode – Leetcode 657">
 <meta name="twitter:description" content="Leetcode 657. Judge Route Circle 题目大意是有个机器人从（0，0）位置出发，每次会上下左右选一个方向移动 1 步，我们要判断它最终是否回到原点。它的移动轨迹用一个字符串来描述，每个字符表示往一个方向移动了一步，可能的字符以及方向是：L (左)， R (右)， U (上)， D (下)。 示例1：12Input: &amp;quot;UD&amp;quot;Output: true">
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="https://www.scalavsleetcode.com/2018/01/04/657/"/>
+  <link rel="canonical" href="https://www.pythonvsleetcode.com/2018/01/04/657/"/>
 
 
 
 
 
-  <title>Scala 大战 Leetcode – Leetcode 657 | Scala 大战 Leetcode</title>
+  <title>Python 大战 Leetcode – Leetcode 657 | Python 大战 Leetcode</title>
   
 
 
@@ -163,7 +163,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Scala 大战 Leetcode</span>
+        <span class="site-title">Python 大战 Leetcode</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -250,7 +250,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.scalavsleetcode.com/2018/01/04/657/">
+    <link itemprop="mainEntityOfPage" href="https://www.pythonvsleetcode.com/2018/01/04/657/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Joe">
@@ -259,7 +259,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Scala 大战 Leetcode">
+      <meta itemprop="name" content="Python 大战 Leetcode">
     </span>
 
     
@@ -267,7 +267,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Scala 大战 Leetcode – Leetcode 657</h1>
+          <h1 class="post-title" itemprop="name headline">Python 大战 Leetcode – Leetcode 657</h1>
         
 
         <div class="post-meta">
@@ -356,7 +356,7 @@
 <p>示例2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;LL&quot;</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <p>这个题目一开始给我的感觉是很适合用栈，但是再转念一想其实不需要这么麻烦，只要统计上下的次数以及左右的次数是否相同就可以了。本质上的思路是跟使用栈一样的，但是在这个题目里我们只需要使用两个变量来分别记录上和下的次数以及左和右的次数。<br>下面是代码：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">judgeCircle</span></span>(moves: <span class="type">String</span>): <span class="type">Boolean</span> = &#123;</span><br><span class="line">    <span class="keyword">var</span> vertical = <span class="number">0</span> <span class="comment">// 记录上下方向上的步数</span></span><br><span class="line">    <span class="keyword">var</span> horizontal = <span class="number">0</span> <span class="comment">// 记录左右方向上的步数</span></span><br><span class="line">    <span class="keyword">for</span> (c &lt;- moves) &#123;</span><br><span class="line">      c <span class="keyword">match</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> '<span class="type">U</span>' =&gt; horizontal += <span class="number">1</span></span><br><span class="line">        <span class="keyword">case</span> '<span class="type">D</span>' =&gt; horizontal -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">case</span> '<span class="type">L</span>' =&gt; vertical -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">case</span> '<span class="type">R</span>' =&gt; vertical += <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    horizontal == <span class="number">0</span> &amp;&amp; vertical == <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">object Solution &#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">judgeCircle</span><span class="params">(moves: String)</span>:</span> Boolean = &#123;</span><br><span class="line">    var vertical = <span class="number">0</span> // 记录上下方向上的步数</span><br><span class="line">    var horizontal = <span class="number">0</span> // 记录左右方向上的步数</span><br><span class="line">    <span class="keyword">for</span> (c &lt;- moves) &#123;</span><br><span class="line">      c match &#123;</span><br><span class="line">        case 'U' =&gt; horizontal += 1</span><br><span class="line">        case 'D' =&gt; horizontal -= 1</span><br><span class="line">        case 'L' =&gt; vertical -= 1</span><br><span class="line">        case 'R' =&gt; vertical += 1</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    horizontal == <span class="number">0</span> &amp;&amp; vertical == <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这里对于字符串里面的每个字符都进行了处理，所以时间复杂度是 O(N)，空间上面的话因为只用了2个变量，所以是 O(1)。</p>
 
       
@@ -394,8 +394,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/04/617/" rel="prev" title="Scala 大战 Leetcode – Leetcode 617">
-                Scala 大战 Leetcode – Leetcode 617 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/04/617/" rel="prev" title="Python 大战 Leetcode – Leetcode 617">
+                Python 大战 Leetcode – Leetcode 617 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -474,7 +474,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -673,18 +673,18 @@
   
 
     
-      <script id="dsq-count-scr" src="https://scala-vs-leetcode.disqus.com/count.js" async></script>
+      <script id="dsq-count-scr" src="https://python-vs-leetcode.disqus.com/count.js" async></script>
     
 
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://www.scalavsleetcode.com/2018/01/04/657/';
+          this.page.url = 'https://www.pythonvsleetcode.com/2018/01/04/657/';
           this.page.identifier = '2018/01/04/657/';
-          this.page.title = 'Scala 大战 Leetcode – Leetcode 657';
+          this.page.title = 'Python 大战 Leetcode – Leetcode 657';
         };
         var d = document, s = d.createElement('script');
-        s.src = 'https://scala-vs-leetcode.disqus.com/embed.js';
+        s.src = 'https://python-vs-leetcode.disqus.com/embed.js';
         s.setAttribute('data-timestamp', '' + +new Date());
         (d.head || d.body).appendChild(s);
       </script>
