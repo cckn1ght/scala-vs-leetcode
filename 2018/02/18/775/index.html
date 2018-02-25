@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Array,Math," />
+  <meta name="keywords" content="Array,Math,Medium," />
 
 
 
@@ -78,14 +78,14 @@
 
 
 <meta name="description" content="775. Global and Local Inversions 我们有有一个数组 A, A 是 [0, 1, ..., N - 1] 这样一个数组的任意排列。A 的长度是 N。就是说 A 是一个所有从 0 到 N - 1 这 N 个数字的任意排列之后组成的一个数组。然后先给两个定义：  当任意 i 和 j 满足 0 &amp;lt;= i &amp;lt; j &amp;lt; N 以及 A[i] &amp;gt; A[j]">
-<meta name="keywords" content="Array,Math">
+<meta name="keywords" content="Array,Math,Medium">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 大战 Leetcode – Leetcode 775">
 <meta property="og:url" content="https://www.pythonvsleetcode.com/2018/02/18/775/index.html">
 <meta property="og:site_name" content="Python 大战 Leetcode">
 <meta property="og:description" content="775. Global and Local Inversions 我们有有一个数组 A, A 是 [0, 1, ..., N - 1] 这样一个数组的任意排列。A 的长度是 N。就是说 A 是一个所有从 0 到 N - 1 这 N 个数字的任意排列之后组成的一个数组。然后先给两个定义：  当任意 i 和 j 满足 0 &amp;lt;= i &amp;lt; j &amp;lt; N 以及 A[i] &amp;gt; A[j]">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-23T14:38:20.560Z">
+<meta property="og:updated_time" content="2018-02-25T08:27:58.944Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 大战 Leetcode – Leetcode 775">
 <meta name="twitter:description" content="775. Global and Local Inversions 我们有有一个数组 A, A 是 [0, 1, ..., N - 1] 这样一个数组的任意排列。A 的长度是 N。就是说 A 是一个所有从 0 到 N - 1 这 N 个数字的任意排列之后组成的一个数组。然后先给两个定义：  当任意 i 和 j 满足 0 &amp;lt;= i &amp;lt; j &amp;lt; N 以及 A[i] &amp;gt; A[j]">
@@ -214,6 +214,16 @@
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -366,13 +376,12 @@
 </ol>
 <a id="more"></a>
 <p>首先理解一下题目里所谓的全局倒置以及本地倒置。假设 <code>[0, 1, ..., N - 1]</code> 这个数组是最原始的正确排列，因为这个数组里面所有后面的数都比前面的大，那么在其他的可能的排列里面，只要有一个后面的数比前面的小，就是一个全局倒置。<br>本地倒置的话是对于相邻的两个数来说，只要后面的数比前面的小，就是本地倒置。因此不难发现其实本地倒置也是一个全局倒置，所以我们只需要判断是否这个 A 里面所有的倒置都是本地倒置即可。或者说只要有一个不是本地倒置的全局倒置，那我们就返回 false。</p>
-<p>根据刚才的分析很容易想到朴素的解法，就是对于每一个数组里的数来说，我看一下它后面不是相邻的位置上有没有比它小的数，如果有，就是 false。<br>很明显时间复杂度接近 1 到 N - 1 的所有数字之和，也就是 O(n^2)。虽然时间复杂度很高很有可能不满足这个题目的要求，但是我们可以当做函数式编程的练习来实现这个解法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">object Solution &#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">isIdealPermutation</span><span class="params">(A: Array[Int])</span>:</span> Boolean = &#123;</span><br><span class="line">    // 因为对于每个数来说，我想要跟它后面所有除了相邻之外的数字比较，因此我想得到当前数的索引。</span><br><span class="line">    // 由于函数式的遍历方法比如 map, foreach 或者我们下面用的 exists 都是不带索引的，因此我们用 zipWithIndex 先将索引加上。</span><br><span class="line">    // 对于 A 的每一个元素，zipWithIndex 会返回一个 tuple：（element, indexOfElement）</span><br><span class="line">    !A.zipWithIndex.exists(cur =&gt; &#123;</span><br><span class="line">      val curVal = cur._1 // tuple 里的第一个对象，就是原始的 A 里面的值</span><br><span class="line">      val curInx = cur._2 // tuple 的第二个对象，当前的索引</span><br><span class="line">      // 丢掉当前元素以及和它相邻的那个之后，判断后面的树是否存在比当前元素小的</span><br><span class="line">      // 只要存在这样的情况，我们就返回 true，同样上面一层的 exists 也会返回 true</span><br><span class="line">      // 如果这里的结果是 true，那么很明显最终的结果是 false</span><br><span class="line">      A.drop(curInx + <span class="number">2</span>).exists(_ &lt; curVal)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>函数式的写法看起来虽然很酷炫，但是 zipWithIndex 似乎也没有比传统的 for index 的循环优雅很多。<br>看了下 drop 方法的实现之后，发现时间复杂度还得更高一些，因为它需要遍历 curInx + 2 次之后才返回新的数组。<br>运行之后果然是显示超时。那就要想一下其他的更优解法了。</p>
+<p>根据刚才的分析很容易想到朴素的解法，就是对于每一个数组里的数来说，我看一下它后面不是相邻的位置上有没有比它小的数，如果有，就是 false。<br>很明显时间复杂度接近 1 到 N - 1 的所有数字之和，也就是 O(n^2)。虽然时间复杂度很高很有可能不满足这个题目的要求，但是我们可以当做 Python 数组操作的练习来把代码写出来。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isIdealPermutation</span><span class="params">(self, A)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type A: List[int]</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># 用 enumerate 函数来获得数组元素的索引 i </span></span><br><span class="line">        <span class="keyword">for</span> i, num <span class="keyword">in</span> enumerate(A):</span><br><span class="line">            <span class="comment"># 数组分割方法</span></span><br><span class="line">            <span class="keyword">for</span> other_num <span class="keyword">in</span> A[i + <span class="number">2</span>:]:</span><br><span class="line">                <span class="keyword">if</span> other_num &lt; num:</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<p>运行之后果然是显示超时。那就要想一下其他的更优解法了。</p>
 <p>因为这是一个比较特殊的数组，我们可以考虑一下这个数组的特性，假设我们只有 3 个数，首先对于每一个数来说，如果它就处在自己索引所在的位置，那么肯定是没有问题的，这时候数组就是 <code>[0, 1, 2]</code>。<br>如果第一个数是 2，那么不管怎么样第三个数一定小于第一个数，因此不符合要求。所以第一个数只能是 0 或 1。其实根据这里的分析已经可以推导出对于 A 中的每一个数来说，想要符合条件，最多只能在原来的位置上向左或向右偏离一个位置，原来的位置就是这个数字本身作为索引所在的位置。因为偏移两个位置之后一定会产生一个全局倒置。</p>
-<p>那么其实解法已经呼之欲出了：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// <span class="keyword">not</span> accepted python. Time limit exceeded.</span><br><span class="line">object Solution &#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">isIdealPermutation</span><span class="params">(A: Array[Int])</span>:</span> Boolean = &#123;</span><br><span class="line">    // 计算每个值和当前索引的偏移量，如果大于一，就返回 false。</span><br><span class="line">    !(A.zipWithIndex.exists(el =&gt; math.abs(el._1 - el._2) &gt; 1))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>但是上面的解法也超时了，去看了下 zipWithIndex 的实现之后发现这个函数也会遍历一遍 A，为它的每一个元素加上索引。所以这次遍历导致了额外的运行时间，虽然从时间复杂度上来讲， O(2n) 和 O(n) 其实没什么差别。但是显然这个题目的提醒里给到的信息还是有用的，它的判断条件对时间十分敏感。<br>那我们就不能用那么函数式的写法来写了，这个时候用 Java 来写的话一个传统的 For 循环就很快解决了。那我们用 python 来实现的话，可以是这样：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">object Solution &#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">isIdealPermutation</span><span class="params">(A: Array[Int])</span>:</span> Boolean = &#123;</span><br><span class="line">    // 先构造一个索引列表，从 <span class="number">0</span> 到 A.size - <span class="number">1</span></span><br><span class="line">    !(Range(0, A.size).exists(index =&gt; math.abs(A(index) - index) &gt; 1))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这一次终于过了，但是真要考虑细节的话，其实这样写会比用 Java For 循环多用了 O(n) 的空间复杂度（Range 生成的索引列表）。当然我们也可以用一个 index 变量和 While 循环来完全模仿 Java  For 循环的写法，那就可以避免这个额外空间复杂度了，但是毕竟 one-liner (一行解决的代码) 的诱惑很大🙈。这题时间复杂度和空间复杂度都是 O(n)，而且是严格的 O(n), 时间上面如果是 O(2n) 都会导致超时。</p>
+<p>那么其实解法已经呼之欲出了：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isIdealPermutation</span><span class="params">(self, A)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type A: List[int]</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">for</span> i, num <span class="keyword">in</span> enumerate(A):</span><br><span class="line">            <span class="keyword">if</span> abs(num - i) &gt; <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure></p>
+<p>用 Python 实现居然出奇的简单，这题时间复杂度和空间复杂度是 O(n) 和 O(1)。</p>
 
       
     </div>
@@ -393,6 +402,8 @@
             <a href="/tags/Array/" rel="tag"># Array</a>
           
             <a href="/tags/Math/" rel="tag"># Math</a>
+          
+            <a href="/tags/Medium/" rel="tag"># Medium</a>
           
         </div>
       
@@ -415,8 +426,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/22/696/" rel="prev" title="Python 大战 Leetcode – 696">
-                Python 大战 Leetcode – 696 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/22/696/" rel="prev" title="Python 大战 Leetcode – Leetcode 696">
+                Python 大战 Leetcode – Leetcode 696 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -517,7 +528,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

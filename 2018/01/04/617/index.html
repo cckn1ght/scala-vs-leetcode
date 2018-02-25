@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Tree," />
+  <meta name="keywords" content="Tree,Easy," />
 
 
 
@@ -78,14 +78,14 @@
 
 
 <meta name="description" content="Leetcode 617. Merge Two Binary Trees 这个题目虽然是简单题，但是感觉还是蛮有意思的。题目大意是我们现在有两颗二叉树，然后我们要把它们合在一起生成一个新的二叉树。假象一下这个过程，因为并没有保证两颗树是相同大小的，所以合的时候，有的节点是重叠的，有的节点是单独的。我们需要把重叠节点的值加在一起，单独节点的值就保持不动。下面看一个例子：123456789101112">
-<meta name="keywords" content="Tree">
+<meta name="keywords" content="Tree,Easy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 大战 Leetcode – Leetcode 617">
 <meta property="og:url" content="https://www.pythonvsleetcode.com/2018/01/04/617/index.html">
 <meta property="og:site_name" content="Python 大战 Leetcode">
 <meta property="og:description" content="Leetcode 617. Merge Two Binary Trees 这个题目虽然是简单题，但是感觉还是蛮有意思的。题目大意是我们现在有两颗二叉树，然后我们要把它们合在一起生成一个新的二叉树。假象一下这个过程，因为并没有保证两颗树是相同大小的，所以合的时候，有的节点是重叠的，有的节点是单独的。我们需要把重叠节点的值加在一起，单独节点的值就保持不动。下面看一个例子：123456789101112">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-23T14:38:02.904Z">
+<meta property="og:updated_time" content="2018-02-25T06:47:04.914Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 大战 Leetcode – Leetcode 617">
 <meta name="twitter:description" content="Leetcode 617. Merge Two Binary Trees 这个题目虽然是简单题，但是感觉还是蛮有意思的。题目大意是我们现在有两颗二叉树，然后我们要把它们合在一起生成一个新的二叉树。假象一下这个过程，因为并没有保证两颗树是相同大小的，所以合的时候，有的节点是重叠的，有的节点是单独的。我们需要把重叠节点的值加在一起，单独节点的值就保持不动。下面看一个例子：123456789101112">
@@ -214,6 +214,16 @@
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -353,11 +363,11 @@
         <p><a href="https://leetcode.com/problems/merge-two-binary-trees/description/" target="_blank" rel="noopener">Leetcode 617. Merge Two Binary Trees</a></p>
 <p>这个题目虽然是简单题，但是感觉还是蛮有意思的。题目大意是我们现在有两颗二叉树，然后我们要把它们合在一起生成一个新的二叉树。假象一下这个过程，因为并没有保证两颗树是相同大小的，所以合的时候，有的节点是重叠的，有的节点是单独的。我们需要把重叠节点的值加在一起，单独节点的值就保持不动。<br>下面看一个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">	Tree 1                    Tree 2                  </span><br><span class="line">          1                         2                             </span><br><span class="line">         / \                       / \                            </span><br><span class="line">        3   2                     1   3                        </span><br><span class="line">       /                           \   \                      </span><br><span class="line">      5                             4   7                  </span><br><span class="line">Output: </span><br><span class="line">Merged tree:</span><br><span class="line">	     3</span><br><span class="line">	    / \</span><br><span class="line">	   4   5</span><br><span class="line">	  / \   \ </span><br><span class="line">	 5   4   7</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<p>题目中还特意指出需要从树的根节点开始合并。我感觉这句话与其说是个限制还不如说是个提示，我们知道二叉树由于它自身的特性，大部分的操作都可以使用递归的方法来实现。这个题目也不例外。根据从根节点开始的提示，我们可以使用先序遍历（preorder traversal）。<br>下面是我的实现<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition <span class="keyword">for</span> a binary tree node.</span><br><span class="line"> * class TreeNode(var _value: Int) &#123;</span><br><span class="line"> *   var value: Int = _value</span><br><span class="line"> *   var left: TreeNode = null</span><br><span class="line"> *   var right: TreeNode = null</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">object Solution &#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mergeTrees</span><span class="params">(t1: TreeNode, t2: TreeNode)</span>:</span> TreeNode = &#123;</span><br><span class="line">    <span class="keyword">if</span> (t1 == null) <span class="keyword">return</span> t2 // base case</span><br><span class="line">    <span class="keyword">if</span> (t2 == null) <span class="keyword">return</span> t1 // another base case</span><br><span class="line">    val root = new TreeNode(t1.value + t2.value) // 从根节点开始</span><br><span class="line">    root.left = mergeTrees(t1.left, t2.left) // 分别看根节点的左子树</span><br><span class="line">    root.right = mergeTrees(t1.right, t2.right) // 以及右子树</span><br><span class="line">    root</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>题目中还特意指出需要从树的根节点开始合并。我感觉这句话与其说是个限制还不如说是个提示，我们知道二叉树由于它自身的特性，大部分的操作都可以使用递归的方法来实现。这个题目也不例外。根据从根节点开始的提示，我们可以使用先序遍历（preorder traversal）。<br>下面是我的实现<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mergeTrees</span><span class="params">(self, t1, t2)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type t1: TreeNode</span></span><br><span class="line"><span class="string">        :type t2: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: TreeNode</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># 两个 base case</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> t1:</span><br><span class="line">            <span class="keyword">return</span> t2</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> t2:</span><br><span class="line">            <span class="keyword">return</span> t1</span><br><span class="line">        merged = TreeNode(t1.val + t2.val)</span><br><span class="line">        <span class="comment"># 递归地计算左子树以及右子树</span></span><br><span class="line">        merged.left = self.mergeTrees(t1.left, t2.left)</span><br><span class="line">        merged.right = self.mergeTrees(t1.right, t2.right)</span><br><span class="line">        <span class="keyword">return</span> merged</span><br></pre></td></tr></table></figure></p>
 <p>上面代码中有几个值得注意的地方：</p>
 <ol>
-<li>在第一个 base case 中，t1 是 null 的时候如果 t2 也同时是 null，返回 t2 也是正确的，表明我们新的树也在这里成为了叶子节点。</li>
-<li>两个 base case，返回的必须是 t2 或者 t1, 而不能是类似 <code>new TreeNode(t1.value)</code> 这样的节点，因为 t1 或者 t2 可能还有子节点。</li>
+<li>在第一个 base case 中，t1 是 None 的时候如果 t2 也同时是 None 的话，返回 t2 也是正确的，表明我们新的树也在这里成为了叶子节点。</li>
+<li>两个 base case，返回的必须是 t2 或者 t1, 而不能是类似 <code>TreeNode(t1.val)</code> 这样的节点，因为 t1 或者 t2 可能还有子节点。</li>
 </ol>
 <p>这个题目的精确时间复杂度似乎有点难求，因为其实我们并没有遍历两棵树的所有节点。假设一个极端的情况，t1 只有左子树，t2 只有右子树，那么其实我们的算法运算一次就结束了。非要精确形容的话，我们假设两棵树重叠节点的数目是 K, 那么我们的时间复杂度是 O(K)。<br>空间复杂度也类似，我们并没有给新树上的每个节点分配内存空间，而是重用了之前树中的节点。所以存储树的空间复杂度是 O(K)。但是由于我们使用了递归，还必须考虑递归每次调用占用的栈的空间。递归调用的次数和两棵树重叠部分的形状有关系，如果是一个一边倒的形状（skewed），那么栈的深度是 K。但是一般来说我们假设树是左右平衡的，那么深度是 $\log_2 K$，最终的空间复杂度是 O($\log_2 K + K$)。</p>
 
@@ -378,6 +388,8 @@
         <div class="post-tags">
           
             <a href="/tags/Tree/" rel="tag"># Tree</a>
+          
+            <a href="/tags/Easy/" rel="tag"># Easy</a>
           
         </div>
       
@@ -502,7 +514,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

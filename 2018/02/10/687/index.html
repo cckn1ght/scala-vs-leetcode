@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Tree,Recursion," />
+  <meta name="keywords" content="Tree,Recursion,Easy," />
 
 
 
@@ -78,14 +78,14 @@
 
 
 <meta name="description" content="687. Longest Univalue Path 题目大意是给出一个二叉树，我们要找出最长的一条路径，该路径中所有节点的值都相同，并返回该路径的长度（所谓的“最长相同值路径”的长度）。两个节点之间的长度指的是节点之间边的数量这个题目的关键是理解这个“最长相同值路径”。题目中没有给出这个名词详细的解释，只给了两个例子，我们先看例子。 示例1：Input:12345    5   / \  4">
-<meta name="keywords" content="Tree,Recursion">
+<meta name="keywords" content="Tree,Recursion,Easy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 大战 Leetcode – Leetcode 687">
 <meta property="og:url" content="https://www.pythonvsleetcode.com/2018/02/10/687/index.html">
 <meta property="og:site_name" content="Python 大战 Leetcode">
 <meta property="og:description" content="687. Longest Univalue Path 题目大意是给出一个二叉树，我们要找出最长的一条路径，该路径中所有节点的值都相同，并返回该路径的长度（所谓的“最长相同值路径”的长度）。两个节点之间的长度指的是节点之间边的数量这个题目的关键是理解这个“最长相同值路径”。题目中没有给出这个名词详细的解释，只给了两个例子，我们先看例子。 示例1：Input:12345    5   / \  4">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-23T14:38:13.878Z">
+<meta property="og:updated_time" content="2018-02-25T09:04:33.349Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 大战 Leetcode – Leetcode 687">
 <meta name="twitter:description" content="687. Longest Univalue Path 题目大意是给出一个二叉树，我们要找出最长的一条路径，该路径中所有节点的值都相同，并返回该路径的长度（所谓的“最长相同值路径”的长度）。两个节点之间的长度指的是节点之间边的数量这个题目的关键是理解这个“最长相同值路径”。题目中没有给出这个名词详细的解释，只给了两个例子，我们先看例子。 示例1：Input:12345    5   / \  4">
@@ -214,6 +214,16 @@
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -358,20 +368,27 @@
 <p>Output:<br><code>2</code></p>
 <a id="more"></a>
 <p>第一个例子可以看到根节点和右子树组成的3个5拥有最长相同值路径，第一个 5 和最后一个 5 之间一共有 2 条边，所以是 2。第二个例子左边的 3 个 4 构成了最长相同值路径，这条路径从最左下角的4开始，经过父节点的那个 4，到达右边的 4，所以长度也是 2。</p>
+<p>这虽然是道 Easy 等级的题目，但是它的通过率比很多 Medium 要低的多….</p>
 <p>这个最长相同值路径看起来似乎很容易定义，但是我在一开始做这道题的时候没想清楚这个概念的确切含义就开始写代码，导致走了很多弯路。所以我们先来分析一下这个概念的具体含义。<br>这个概念有以下特性：</p>
 <ol>
 <li>这个路径不是无限分叉的，不然就构不成一条从头到尾的路径。</li>
-<li>但是这个路径允许有至多一个分叉点，例二里面的父节点 4 就是一个例子。当然也可以没有分叉点，比如例 1。</li>
+<li>但是这个路径允许有至多一个分叉点（或者说连接两条不同方向的路径的点，我在代码里把它称为 joint），例二里面的父节点 4 就是一个例子。当然也可以没有分叉点，比如例 1。</li>
 </ol>
 <p>这个概念导致路径中的分叉点成了一个特殊的点，因此我们可以从这里做文章。</p>
-<p>在不考虑细节和具体实现的的情况下，我的一个单纯的想法是遍历节点，每次遍历的时候找到以这个节点为分叉节点的相同值路径长度。<br>基于这个想法，我们可以用一个全局变量记录这个最大值，然后每次遍历的时候比较改变这个最大值。<br>但是这个方法并不函数式，因此我们使用递归的方式来实现:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">longestUnivaluePath</span><span class="params">(root: TreeNode)</span>:</span> Int = &#123;</span><br><span class="line">  <span class="keyword">if</span> (root == null) &#123;</span><br><span class="line">    <span class="number">0</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    // 假设 findLength 会找到以某个节点为分叉节点的最长相同值路径</span><br><span class="line">    val nodeLen = findLength(root) // 以当前节点为分叉节点的最长相同值路径</span><br><span class="line">    val leftLen = longestUnivaluePath(root.left) // 左子树的最长路径</span><br><span class="line">    val rightLen = longestUnivaluePath(root.right) // 右子树的最长路径</span><br><span class="line">    // 返回上面三个值中最大的那个</span><br><span class="line">    (nodeLen :: leftLen :: rightLen :: Nil) reduce (_ max _) // 构造一个 list 并返回最大值</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>所以我们现在只要把 findLength 这个方法实现就可以了。这里是我纠结最久的地方，重写了几次，原因就是之前说的没有把最长相同值路径的定义想清楚就开始写了。<br>我们再回顾一下上面讲到的两个特性，根据那两个特性，我们可以总结出 findLength 方法该怎么写：</p>
+<p>在不考虑细节和具体实现的的情况下，我的一个单纯的想法是遍历节点，每次遍历的时候找到以这个节点为分叉节点的相同值路径长度。<br>基于这个想法，我们可以用一个全局变量记录这个最大值，然后每次遍历的时候比较改变这个最大值。<br>但是换个角度想，我们可以让递归遍历的方法直接返回最大值，这么想来用递归似乎更简单一点，而且可以避免全局变量就应该尽量避免：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">longestUnivaluePath</span><span class="params">(self, root)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type root: TreeNode</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="comment"># 找到以当前节点为分叉点的路径长度</span></span><br><span class="line">    nodeLen = self.find_length_of_joint(root)</span><br><span class="line">    <span class="comment"># 递归地去找当前节点的左子树及右子树</span></span><br><span class="line">    leftLen = self.longestUnivaluePath(root.left)</span><br><span class="line">    rightLen = self.longestUnivaluePath(root.right)</span><br><span class="line">    <span class="comment"># 返回最大的那个</span></span><br><span class="line">    <span class="keyword">return</span> max(nodeLen, leftLen, rightLen)</span><br></pre></td></tr></table></figure>
+<p>所以我们现在只要把 <code>find_length_of_joint</code> 这个方法实现就可以了。这里是我纠结最久的地方，重写了几次，原因就是之前说的没有把最长相同值路径的定义想清楚就开始写了。<br>我们再回顾一下上面讲到的两个特性，根据那两个特性，我们可以总结出 <code>find_length_of_joint</code> 方法该怎么写：</p>
 <ol>
 <li>对于可能存在的分叉点而言，我们要做的就是找到它左子树和右子树的最大相同值路径长度，返回相加的值。</li>
-<li>对于不是分叉点的节点，我们不能把它的左子树和右子树的最大相同路径长度相加，而是要对比两个值，返回大的那个。<br>所以完整的代码如下：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">object Solution &#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">longestUnivaluePath</span><span class="params">(root: TreeNode)</span>:</span> Int = &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == null) &#123;</span><br><span class="line">      <span class="number">0</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      // 假设 findLength 会找到以某个节点为分叉节点的最长相同值路径长度</span><br><span class="line">      val nodeLen = findLength(root) // 以当前节点为分叉节点的最长相同值路径长度</span><br><span class="line">      val leftLen = longestUnivaluePath(root.left) // 左子树的最长路径</span><br><span class="line">      val rightLen = longestUnivaluePath(root.right) // 右子树的最长路径</span><br><span class="line">      // 返回上面三个值中最大的那个</span><br><span class="line">      (nodeLen :: leftLen :: rightLen :: Nil) reduce (_ max _) // 构造一个 list 并返回最大值</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">findLength</span><span class="params">(node: TreeNode)</span>:</span> Int = &#123;</span><br><span class="line">    // 对分叉节点来说，找到左右子树的最长相同值路径长度，并返回和</span><br><span class="line">    findChildLength(node.left, node.value) + findChildLength(node.right, node.value)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">findChildLength</span><span class="params">(child: TreeNode, rootValue: Int)</span>:</span> Int = &#123;</span><br><span class="line">    // 对于非分叉节点来说，如果值不等于分叉节点的值，则返回<span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> (child == null || child.value != rootValue) &#123;</span><br><span class="line">      <span class="number">0</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      val left = findChildLength(child.left, rootValue)</span><br><span class="line">      val right = findChildLength(child.right, rootValue)</span><br><span class="line">      // 首先这个节点跟分叉节点值相同，因此返回的最小值是 <span class="number">1</span></span><br><span class="line">      // 然后再加上左右子树中比较大的那个相同值路径长度</span><br><span class="line">      <span class="number">1</span> + (left max right)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>对于不是分叉点的节点，我们不能把它的左子树和右子树的最大相同路径长度相加，而是要对比两个值，返回大的那个。<br>所以完整的代码如下：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestUnivaluePath</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="comment"># 找到以当前节点为分叉点的路径长度</span></span><br><span class="line">        nodeLen = self.find_length_of_joint(root)</span><br><span class="line">        <span class="comment"># 递归地去找当前节点的左子树及右子树</span></span><br><span class="line">        leftLen = self.longestUnivaluePath(root.left)</span><br><span class="line">        rightLen = self.longestUnivaluePath(root.right)</span><br><span class="line">        <span class="comment"># 返回最大的那个</span></span><br><span class="line">        <span class="keyword">return</span> max(nodeLen, leftLen, rightLen)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">find_length_of_joint</span><span class="params">(self, node)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.find_length(node.left, node.val) + \</span><br><span class="line">               self.find_length(node.right, node.val)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">find_length</span><span class="params">(self, node, joint_value)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> node <span class="keyword">or</span> node.val != joint_value:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + max(self.find_length(node.left, joint_value),</span><br><span class="line">                       self.find_length(node.right, joint_value))</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>时间复杂度方面，对于 longestUnivaluePath 这个方法来说，这是一个先序遍历，所以它的时间复杂度是 O(n)，但是对于每一个节点，我们又做了 findLength 这个操作，这个操作理论上最坏情况也会对从当前节点开始的所有子节点做遍历。但是总的复杂度绝对不是 O($n^2$)，因为对于每个子节点来说，它所需要遍历的节点数目是成倍下降的，因此最大的时间复杂度应该是 O($n\log n$)，精确的值应该比这个更小一点，但是不知道该怎么求，欢迎留言讨论。</p>
+<p>这里顺便提一下 Python 里面很长的行应该怎么分行。一种方法是使用 <code>\</code>（backslash），如果有操作符的话，比较推荐的方式是在操作符之后使用反斜杠，如代码中的 24 行。还有一种方式是利用 Python 自带的特性，在 <code>()</code>、<code>[]</code> 和 <code>{}</code> 内换行，如 29 行。换行之后的缩进似乎不是很强制，我喜欢把它缩到跟上一行同样语义的地方。</p>
+<p>引用下 PEP8：</p>
+<blockquote>
+<p>The preferred way of wrapping long lines is by using Python’s implied line continuation inside parentheses, brackets and braces. If necessary, you can add an extra pair of parentheses around an expression, but sometimes using a backslash looks better. Make sure to indent the continued line appropriately. The preferred place to break around a binary operator is after the operator, not before it.</p>
+</blockquote>
+<p>时间复杂度方面，对于 longestUnivaluePath 这个方法来说，这是一个先序遍历，所以它的时间复杂度是 O(n)，但是对于每一个节点，我们又做了 <code>find_length_of_joint</code> 这个操作，这个操作理论上最坏情况也会对从当前节点开始的所有子节点做遍历。但是总的复杂度绝对不是 O($n^2$)，因为对于每个子节点来说，它所需要遍历的节点数目是成倍下降的，因此最大的时间复杂度应该是 O($n\log n$)，精确的值应该比这个更小一点，但是不知道该怎么求，欢迎留言讨论。</p>
 
       
     </div>
@@ -392,6 +409,8 @@
             <a href="/tags/Tree/" rel="tag"># Tree</a>
           
             <a href="/tags/Recursion/" rel="tag"># Recursion</a>
+          
+            <a href="/tags/Easy/" rel="tag"># Easy</a>
           
         </div>
       
@@ -516,7 +535,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
