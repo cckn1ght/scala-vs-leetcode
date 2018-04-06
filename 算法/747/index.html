@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Easy,Array," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="747. Largest Number At Least Twice of Others 给定一个数组 nums，这数组里面始终会有且仅有一个最大的数。我们要做的是确定这个最大的数是否比数组里的任意其他数都要大至少两倍。如果是的话，我们返回这个最大的数在数组里的索引，如果不是的话，返回 -1。 示例1：1234Input: nums = [3, 6, 1, 0]Output: 1Explanati">
+<meta name="keywords" content="Easy,Array">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 大战 Leetcode – Leetcode 747">
+<meta property="og:url" content="https://www.pythonvsleetcode.com/算法/747/index.html">
+<meta property="og:site_name" content="Python 大战 Leetcode">
+<meta property="og:description" content="747. Largest Number At Least Twice of Others 给定一个数组 nums，这数组里面始终会有且仅有一个最大的数。我们要做的是确定这个最大的数是否比数组里的任意其他数都要大至少两倍。如果是的话，我们返回这个最大的数在数组里的索引，如果不是的话，返回 -1。 示例1：1234Input: nums = [3, 6, 1, 0]Output: 1Explanati">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-25T09:07:12.465Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 大战 Leetcode – Leetcode 747">
+<meta name="twitter:description" content="747. Largest Number At Least Twice of Others 给定一个数组 nums，这数组里面始终会有且仅有一个最大的数。我们要做的是确定这个最大的数是否比数组里的任意其他数都要大至少两倍。如果是的话，我们返回这个最大的数在数组里的索引，如果不是的话，返回 -1。 示例1：1234Input: nums = [3, 6, 1, 0]Output: 1Explanati">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.pythonvsleetcode.com/算法/747/"/>
+
+
+
+
+
+  <title>Python 大战 Leetcode – Leetcode 747 | Python 大战 Leetcode</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-103006260-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Python 大战 Leetcode</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.pythonvsleetcode.com/算法/747/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python 大战 Leetcode">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python 大战 Leetcode – Leetcode 747</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T22:38:36+08:00">
+                2018-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/算法/747/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="算法/747/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://leetcode.com/problems/largest-number-at-least-twice-of-others/description/" target="_blank" rel="noopener">747. Largest Number At Least Twice of Others</a></p>
+<p>给定一个数组 <code>nums</code>，这数组里面始终会有且仅有一个最大的数。<br>我们要做的是确定这个最大的数是否比数组里的任意其他数都要大至少两倍。<br>如果是的话，我们返回这个最大的数在数组里的索引，如果不是的话，返回 -1。</p>
+<p>示例1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [3, 6, 1, 0]</span><br><span class="line">Output: 1</span><br><span class="line">Explanation: 6 is the largest integer, and for every other number in the array x,</span><br><span class="line">6 is more than twice as big as x.  The index of value 6 is 1, so we return 1.</span><br></pre></td></tr></table></figure></p>
+<p>示例2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1, 2, 3, 4]</span><br><span class="line">Output: -1</span><br><span class="line">Explanation: 4 isn&apos;t at least as big as twice the value of 3, so we return -1.</span><br></pre></td></tr></table></figure></p>
+<p>注意：</p>
+<ol>
+<li>nums 的长度会在 [1, 50] 之间。</li>
+<li>任意一个 nums[i] 会在 [0, 99] 之间。</li>
+</ol>
+<a id="more"></a>
+<p>这个题目很显然不难，但是有一些需要注意的地方。首先是要理清楚如何遍历数组找出最大的数以及第二大的数（如果比第二大的数大至少两倍，就一定满足题目要求）。因为这个题目给了比较多的数据上的限制，比如数组里的任何一个数都大于等于0，而且只需要记录最大以及次大的两个数，所以将题目简化了不少。我们可以使用 <code>max_num</code> 以及 <code>sub_max_num</code> 来分别记录最大及次大。因为任何数都大于等于0，因此这两个数字可以初始化成 -1, 这样就保证了他们比数组中的任何数都小，在后面的逻辑判断中不会出问题。然后找到最新的最大数之和，要记得同步地更新 <code>sub_max_num</code> 为之前的 <code>max_num</code>。细节可以看代码。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dominantIndex</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># 初始化最大及次大数</span></span><br><span class="line">        max_num = <span class="number">-1</span></span><br><span class="line">        sub_max_num = <span class="number">-1</span></span><br><span class="line">        <span class="comment"># 初始化最大数的索引</span></span><br><span class="line">        max_index = <span class="number">-1</span></span><br><span class="line">        <span class="comment"># python 遍历数组小技巧，如果想要遍历的时候也同时得到元素的索引</span></span><br><span class="line">        <span class="comment"># 可以在原始数组上使用 enumerate 函数。</span></span><br><span class="line">        <span class="comment"># 其中 i 就是 num 对应的索引</span></span><br><span class="line">        <span class="keyword">for</span> i, num <span class="keyword">in</span> enumerate(nums):</span><br><span class="line">            <span class="comment"># 找到最大的数了</span></span><br><span class="line">            <span class="keyword">if</span> num &gt; max_num:</span><br><span class="line">                <span class="comment"># 这里用到了 python 特有的 unpacking 特性。</span></span><br><span class="line">                <span class="comment"># 正常的写法是以下的两行：</span></span><br><span class="line">                <span class="comment"># sub_max_num = max_num</span></span><br><span class="line">                <span class="comment"># max_num = num</span></span><br><span class="line">                max_num, sub_max_num = num, max_num</span><br><span class="line">                max_index = i</span><br><span class="line">            <span class="comment"># 找到一个次大的数</span></span><br><span class="line">            <span class="keyword">elif</span> num &gt; sub_max_num:</span><br><span class="line">                sub_max_num = num</span><br><span class="line">        <span class="keyword">if</span> max_num &gt;= sub_max_num * <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> max_index</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure></p>
+<p>很显然时间复杂度是 O(n), 空间复杂度是 O(1)。但是这个题目如果延伸一下，记录数组中前 k 个最大的数，就没那么简单了。直接给数组排序当然可以，但是首先排序的最小复杂度是 O($n\log n$)，其次是那种情况下，往往题目会要求记录一个数据流的前 k 个最大的数，也就是不方便给数组完整排序，因为数据是持续地进来的。大家可以先考虑考虑怎么做，有空碰到了类似的题目我们再讨论。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Easy/" rel="tag"># Easy</a>
+          
+            <a href="/tags/Array/" rel="tag"># Array</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/leetcode/696/" rel="next" title="Python 大战 Leetcode – Leetcode 696">
+                <i class="fa fa-chevron-left"></i> Python 大战 Leetcode – Leetcode 696
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/算法/771/" rel="prev" title="Python 大战 Leetcode – Leetcode 771">
+                Python 大战 Leetcode – Leetcode 771 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Joe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+<span class="post-meta-divider">|</span>
+<p class="coding-page-host">Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://python-vs-leetcode.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://www.pythonvsleetcode.com/算法/747/';
+          this.page.identifier = '算法/747/';
+          this.page.title = 'Python 大战 Leetcode – Leetcode 747';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://python-vs-leetcode.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Easy,String," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="696. Count Binary Substrings 给定一个字符串 s，数出拥有同样多个数连续的 0 或 1 的非空子字符串数目。符合要求的子字符串还有一个特征，就是它的 0 或 1 必须是连在一起的。也就是说 0011 或 1100 是符合要求的字符串，但是 0101 就不是。相同的子字符串如果出现多次，那我们要把出现的所有次数都算上。 示例 1：1234567Input: &amp;quot;0">
+<meta name="keywords" content="Easy,String">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 大战 Leetcode – Leetcode 696">
+<meta property="og:url" content="https://www.pythonvsleetcode.com/leetcode/696/index.html">
+<meta property="og:site_name" content="Python 大战 Leetcode">
+<meta property="og:description" content="696. Count Binary Substrings 给定一个字符串 s，数出拥有同样多个数连续的 0 或 1 的非空子字符串数目。符合要求的子字符串还有一个特征，就是它的 0 或 1 必须是连在一起的。也就是说 0011 或 1100 是符合要求的字符串，但是 0101 就不是。相同的子字符串如果出现多次，那我们要把出现的所有次数都算上。 示例 1：1234567Input: &amp;quot;0">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-25T09:07:08.952Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 大战 Leetcode – Leetcode 696">
+<meta name="twitter:description" content="696. Count Binary Substrings 给定一个字符串 s，数出拥有同样多个数连续的 0 或 1 的非空子字符串数目。符合要求的子字符串还有一个特征，就是它的 0 或 1 必须是连在一起的。也就是说 0011 或 1100 是符合要求的字符串，但是 0101 就不是。相同的子字符串如果出现多次，那我们要把出现的所有次数都算上。 示例 1：1234567Input: &amp;quot;0">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.pythonvsleetcode.com/leetcode/696/"/>
+
+
+
+
+
+  <title>Python 大战 Leetcode – Leetcode 696 | Python 大战 Leetcode</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-103006260-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Python 大战 Leetcode</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.pythonvsleetcode.com/leetcode/696/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python 大战 Leetcode">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python 大战 Leetcode – Leetcode 696</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-22T20:33:19+08:00">
+                2018-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/leetcode/696/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="leetcode/696/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://leetcode.com/problems/count-binary-substrings/description/" target="_blank" rel="noopener">696. Count Binary Substrings</a></p>
+<p>给定一个字符串 <code>s</code>，数出拥有同样多个数连续的 0 或 1 的非空子字符串数目。符合要求的子字符串还有一个特征，就是它的 0 或 1 必须是连在一起的。<br>也就是说 <code>0011</code> 或 <code>1100</code> 是符合要求的字符串，但是 <code>0101</code> 就不是。<br>相同的子字符串如果出现多次，那我们要把出现的所有次数都算上。</p>
+<p>示例 1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;00110011&quot;</span><br><span class="line">Output: 6</span><br><span class="line">Explanation: There are 6 substrings that have equal number of consecutive 1&apos;s and 0&apos;s: &quot;0011&quot;, &quot;01&quot;, &quot;1100&quot;, &quot;10&quot;, &quot;0011&quot;, and &quot;01&quot;.</span><br><span class="line"></span><br><span class="line">Notice that some of these substrings repeat and are counted the number of times they occur.</span><br><span class="line"></span><br><span class="line">Also, &quot;00110011&quot; is not a valid substring because all the 0&apos;s (and 1&apos;s) are not grouped together.</span><br></pre></td></tr></table></figure></p>
+<p>示例 2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;10101&quot;</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: There are 4 substrings: &quot;10&quot;, &quot;01&quot;, &quot;10&quot;, &quot;01&quot; that have equal number of consecutive 1&apos;s and 0&apos;s.</span><br></pre></td></tr></table></figure></p>
+<p>示例中的解释基本跟我上面说的一样。</p>
+<p>另外有两个提示：</p>
+<ol>
+<li>s.length 会在 1 和 50,000 之间。</li>
+<li>s 只会包含 “0” 或 “1” 这两个字符。</li>
+</ol>
+<a id="more"></a>
+<p>第一个想法是这题应该可以把时间复杂度控制在 O(n)，n 就是 s.length。一开始看起来比较困难的似乎是类似于 “000111” 这种比较长的符合条件的字符串包含了不止一个符合条件的子字符串。<br>仔细想一下其实刚才那个包含 3 个相同 “0” 和 “1” 的字符串就包含了 3 个符合要求的字符串，分别是 “000111”，”0011” 以及 “01”。<br>这样一来就很好处理了，我们只需要遍历字符串，在过程中找出那些最长的符合要求的子字符串，再根据这个子字符串里面有多少个 0（或 1）来确定小的符合条件的子字符串。<br>那么如何找符合要求的最长的子字符串呢，似乎用代码来解释比较好。<br>以 <code>00110011</code> 来举例，我们一开始取第一个字符 ‘0’ 为当前字符，记成 <code>cur_char</code>，遍历的时候看每个字符是否和当前字符相同，如果相同，我们记录当前碰到相同字符的次数，<code>cur_len</code>。<br>如果不同，比如说碰到第一个 ‘1’ 的时候，就把 <code>cur_char</code> 设成 ‘1’，因为我们当前的字符已经不是 ‘0’ 了，所以把 <code>cur_len</code> 的值记录到 <code>prev_len</code> 里面，然后 <code>cur_len</code> 是现在碰到 ‘1’ 的次数，也就1。<br>再次碰到和 ‘1’ 不一样的字符的时候，证明我们已经找到了一个符合要求的最长子字符串。要记录次数。</p>
+<p>解释有点复杂，看代码会清楚一点。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countBinarySubstrings</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># 这里用了 Python 的一个特性，tuple unpacking</span></span><br><span class="line">        prev_len, cur_len = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        cur_char = s[<span class="number">0</span>]</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> s:</span><br><span class="line">            <span class="comment"># 字符没有转换，那我们把 cur_len 增加</span></span><br><span class="line">            <span class="keyword">if</span> cur_char == c:</span><br><span class="line">                cur_len += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment"># 字符转换了，且已经转换过一次，因为 prev_len 不是 0</span></span><br><span class="line">                <span class="comment"># 代表我们已经找到一个符合条件的子字符串</span></span><br><span class="line">                <span class="comment"># 这时我们需要统计 res</span></span><br><span class="line">                <span class="keyword">if</span> prev_len &gt; <span class="number">0</span>:</span><br><span class="line">                    res += min(cur_len, prev_len)</span><br><span class="line">                <span class="comment"># 转换发生的时候，现在的 cur_len 已经变成了 prev_len</span></span><br><span class="line">                prev_len = cur_len</span><br><span class="line">                cur_len = <span class="number">1</span></span><br><span class="line">                cur_char = c</span><br><span class="line">        <span class="comment"># 最后还要加上这里是因为我们的循环没法处理最后的两个 cur_len 和 prev_len</span></span><br><span class="line">        <span class="keyword">return</span> res + min(cur_len, prev_len)</span><br></pre></td></tr></table></figure>
+<p>这个解法只遍历一次，时间复杂度和空间复杂度分别是 O(n) 和 O(1)。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Easy/" rel="tag"># Easy</a>
+          
+            <a href="/tags/String/" rel="tag"># String</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/算法/775/" rel="next" title="Python 大战 Leetcode – Leetcode 775">
+                <i class="fa fa-chevron-left"></i> Python 大战 Leetcode – Leetcode 775
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/算法/747/" rel="prev" title="Python 大战 Leetcode – Leetcode 747">
+                Python 大战 Leetcode – Leetcode 747 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Joe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+<span class="post-meta-divider">|</span>
+<p class="coding-page-host">Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://python-vs-leetcode.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://www.pythonvsleetcode.com/leetcode/696/';
+          this.page.identifier = 'leetcode/696/';
+          this.page.title = 'Python 大战 Leetcode – Leetcode 696';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://python-vs-leetcode.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
